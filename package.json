@@ -3,11 +3,11 @@
   "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
-  "type": "commonjs",
   "scripts": {
     "predxm": "echo 'Running pre-test steps'",
     "dxm": "echo 'testing...'",
-    "postdxm": "echo 'Tests complete'"
+    "postdxm": "echo 'Tests complete'",
+    "build-webpack": "npx webpack --config ./webpack-example/webpack.config.js"
   },
   "dependencies": {
     "flow-bin": "^0.243.0",
@@ -15,8 +15,22 @@
     "promises-aplus-tests": "^2.1.2",
     "reflect-metadata": "^0.2.2",
     "sinon": "^19.0.2",
+    "tapable": "^2.2.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-dependency-suite": "^2.4.5",
     "yargs": "^17.7.2"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "mocha": "^2.5.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
 }
