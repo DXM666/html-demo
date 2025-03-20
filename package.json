@@ -15,6 +15,7 @@
     "promises-aplus-tests": "^2.1.2",
     "reflect-metadata": "^0.2.2",
     "sinon": "^19.0.2",
+    "spark-md5": "^3.0.2",
     "tapable": "^2.2.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3",

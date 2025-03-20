@@ -65,6 +65,8 @@ class MyPromise {
             textNode.data = "2";
         } else if (typeof window !== "undefined" && window.queueMicrotask) {
             window.queueMicrotask(fn);
+        } else if (typeof queueMicrotask !== "undefined") {
+            queueMicrotask(fn);
         } else if (process && process.nextTick) {
             process.nextTick(fn);
         } else {
@@ -94,13 +96,18 @@ class MyPromise {
 
     resolvePromise({ promise, x, resolve, reject }) {
         if (promise === x) {
-            reject(new TypeError("The promise and the return value are the same"));
+            reject(
+                new TypeError("The promise and the return value are the same")
+            );
             return;
         }
 
         let called = false;
         try {
-            if (x !== null && (typeof x === "object" || typeof x === "function")) {
+            if (
+                x !== null &&
+                (typeof x === "object" || typeof x === "function")
+            ) {
                 const then = x.then;
                 if (typeof then === "function") {
                     then.call(
@@ -108,7 +115,12 @@ class MyPromise {
                         (y) => {
                             if (called) return;
                             called = true;
-                            this.resolvePromise({ promise, x: y, resolve, reject });
+                            this.resolvePromise({
+                                promise,
+                                x: y,
+                                resolve,
+                                reject,
+                            });
                         },
                         (r) => {
                             if (called) return;
@@ -187,14 +199,20 @@ MyPromise.resolve = function (value) {
         return value;
     }
     return new MyPromise((resolve) => {
-        this.prototype.resolvePromise({
-            promise: null,
-            x: value,
-            resolve,
-            reject: (reason) => {
-                throw reason;
-            }
-        });
+        if (value && typeof value.then === "function") {
+            this.runMicroTask(() => {
+                value.then(resolve);
+            });
+        } else {
+            this.prototype.resolvePromise({
+                promise: null,
+                x: value,
+                resolve,
+                reject: (reason) => {
+                    throw reason;
+                },
+            });
+        }
     });
 };
 

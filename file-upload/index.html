@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="file" id="file">
+    <!-- 移动的小球 -->
+    <div id="ball"></div>
+    <script src="file.js" type="module"></script>
+    <!-- <script>
+        // 获取小球元素
+        const ball = document.getElementById('ball');
+        
+        // 设置初始位置
+        let posX = 50;
+        let posY = 50;
+        
+        // 设置移动速度
+        let speedX = 2;
+        let speedY = 3;
+        
+        // 获取窗口宽高
+        let maxX = window.innerWidth;
+        let maxY = window.innerHeight;
+        
+        // 动画函数
+        function animateBall() {
+            // 更新位置
+            posX += speedX;
+            posY += speedY;
+            
+            // 边界检测
+            if (posX <= 0 || posX >= maxX - 40) {
+                speedX = -speedX;
+                changeBallColor();
+            }
+            
+            if (posY <= 0 || posY >= maxY - 40) {
+                speedY = -speedY;
+                changeBallColor();
+            }
+            
+            // 应用新位置
+            ball.style.left = posX + 'px';
+            ball.style.top = posY + 'px';
+            
+            // 循环动画
+            requestAnimationFrame(animateBall);
+        }
+        
+        // 随机改变小球颜色
+        function changeBallColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            ball.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+        
+        // 窗口大小改变时更新最大值
+        window.addEventListener('resize', function() {
+            maxX = window.innerWidth;
+            maxY = window.innerHeight;
+        });
+        
+        // 启动动画
+        animateBall();
+    </script> -->
+    <style>
+        #ball{
+            width: 40px;
+            height: 40px;
+            background-color: #ff5722;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: moveBall 5s linear infinite alternate, changeColor 8s infinite;
+        }
+        
+        @keyframes moveBall {
+            0% {
+                left: 0;
+                top: calc(10%);
+            }
+
+            50% {
+                left: calc(100%);
+                top: calc(10%);
+            }
+      
+            100% {
+                left: 0;
+                top: calc(10%);
+            }
+        }
+        
+        @keyframes changeColor {
+            0% { background-color: #ff5722; }
+            20% { background-color: #2196f3; }
+            40% { background-color: #4caf50; }
+            60% { background-color: #9c27b0; }
+            80% { background-color: #ffeb3b; }
+            100% { background-color: #ff5722; }
+        }
+    </style>
+</body>
+</html>

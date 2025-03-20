@@ -3,28 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>异步资源测试</title>
 </head>
 <body>
-  <script type="module" src="practice.js"></script>
-  <button onclick="alert(1)">click</button>
-  <script>
-    // (async()=>{
-    //   while(1){
-    //   await delay();
-    // }
-    // })()
-    // console.log(1);
-    async function fn(){
-      await delay();
-      return fn();
-    }
-    fn();
-    function delay(){
-      return new Promise(resolve=>{
-        setTimeout(resolve,1000)
-      })
-    }
-  </script>
+  <h1>异步资源测试</h1>
+  <p>请打开控制台查看测试结果</p>
+  <script src="test.js"></script>
 </body>
 </html>
